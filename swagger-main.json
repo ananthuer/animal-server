@@ -1,0 +1,604 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "test Admin API"
+    },
+    "host": "localhost:8000",
+    "basePath": "/v1/api",
+
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "x-access-token": {
+            "type": "apiKey",
+            "name": "x-access-token",
+            "in": "header"
+        }
+    },
+
+
+    "paths":{
+        "/animals":{
+            "post": {
+                "tags": [
+                    "Animals"
+                ],
+                "description": "create a animal",
+                "parameters": [
+                    {
+                    "name": "animal",
+                    "in": "body",
+                    "description": "name of the animal",
+                    "schema": {
+                        "$ref": "#/definitions/Animal"
+                    }
+                }
+            ],
+            "security": [
+                {"x-access-token": []}
+            ],
+            
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sucessfully created"
+                        
+                    }
+                }
+            },
+        
+            "get": {
+                "tags": [
+                    "Animals"
+                ],
+                "description": "Get all animal resources",
+                "parameters":[
+                   
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "integer"
+                    }
+                 
+                    
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "security": [
+                    {"x-access-token": []}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of user"
+                    }
+                }
+            }
+            },
+        "/animals/{animalId}":{
+                "get": {
+                    "tags": [
+                        "Animals"
+                    ],
+                    "description": "get one animal resource",
+                    "parameters": [{
+                        "name": "animalId",
+                        "in": "path",
+                        "description": "get one animal resource"
+                    }],
+                    "security": [
+                        {"x-access-token": []}
+                    ],
+                    "produces": [
+                        "application/json"
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "successfully updated"
+                            
+                        }
+                    }
+
+                
+        },
+        "put": {
+            "tags": [
+                "Animals"
+            ],
+            "description": "update animal resource",
+            "parameters": [{
+                "name": "animalId",
+                "in": "path",
+                "description": "update animal resources"
+            
+            },{
+                "name": "login",
+                "in": "body",
+                "description": "update user in system",
+                "schema": {
+                    "$ref": "#/definitions/Animal"
+                }
+            }],
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "successfully updated"
+                }
+            }
+    },
+    "delete": {
+        "tags": [
+            "Animals"
+        ],
+        "description": "delete all animal",
+        "parameters": [{
+            "name": "animalId",
+            "in": "path",
+            "description": "animal deleted"
+        
+        }],
+        "security": [
+            {"x-access-token": []}
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successfully deleted"
+            }
+        }
+    }
+    },
+   
+
+        
+
+
+        
+    
+
+
+    "/auth/user":{
+        "post": {
+            "tags": [
+                "auth"
+            ],
+            "description": "login creds",
+            "parameters": [
+                {
+                "name": "authentication",
+                "in": "body",
+                "description": "name of the user",
+                "schema": {
+                        "$ref": "#/definitions/auth"
+                    }
+                    
+            }
+        ],
+        
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Sucessfully created"
+                    
+                }
+            }
+        }
+    },
+    "/roles" : {
+        "post": {
+            "tags": [
+                "Roles"
+            ],
+            "description": "create a role",
+            "parameters": [
+                {
+                "name": "role",
+                "in": "body",
+                "description": "name of the role",
+                "schema": {
+                    "$ref": "#/definitions/roles"
+                }
+            }
+        ],
+        
+        "security": [
+            {"x-access-token": []}
+        ],
+        
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Sucessfully created"
+                    
+                }
+            }
+        },
+        "get": {
+            "tags": [
+                "Roles"
+            ],
+            "description": "Get all user",
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "List of user"
+                }
+            }
+        }
+    },
+    "/roles/{roleId}": {
+        "get": {
+            "tags": [
+                "Roles"
+            ],
+            "description": "get one role ",
+            "parameters": [{
+                "name": "roleId",
+                "in": "path",
+                "description": "role identiier"
+            }],
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "successfully updated"
+                    
+                }
+            }
+
+        },
+   
+    "put": {
+        "tags": [
+            "Roles"
+        ],
+        "description": "update role ",
+        "parameters": [{
+            "name": "roleId",
+            "in": "path",
+            "description": "role identiier"
+        
+        },{
+            "name": "roleId",
+            "in": "body",
+            "description": "update role in system",
+            "schema": {
+                "$ref": "#/definitions/roles"
+            }
+        }],
+        "security": [
+            {"x-access-token": []}
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successfully updated"
+            }
+        }
+    },
+    "delete": {
+        "tags": [
+            "Roles"
+        ],
+        "description": "delete a role",
+        "parameters": [{
+            "name": "roleId",
+            "in": "path",
+            "description": "role deleted"
+        
+        }],
+        "security": [
+            {"x-access-token": []}
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successfully deleted"
+            }
+        }
+    }
+    
+},
+"/company":{
+
+    "post": {
+        "tags": [
+            "Company"
+        ],
+        "description": "create a company",
+        "parameters": [
+            {
+            "name": "company",
+            "in": "body",
+            "description": "name of the company",
+            "schema": {
+                "$ref": "#/definitions/company"
+            }
+        }
+    ],"security": [
+        {"x-access-token": []}
+    ],
+    
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "Sucessfully created"
+                
+            }
+        }
+    },
+    "get": {
+        "tags": [
+            "Company"
+        ],
+        "description": "Get all company",
+        "parameters":[
+          
+            {
+                "name": "page",
+                "in": "query",
+                "type": "integer"
+            },
+            {
+                "name": "limit",
+                "in": "query",
+                "type": "integer"
+            }
+          
+           
+            
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "List of company"
+            }
+        },"security": [
+            {"x-access-token": []}
+        ]
+    }
+
+
+},
+     "/company/{companyId}":{
+        "get": {
+            "tags": [
+                "Company"
+            ],
+            "description": "get one company ",
+            "parameters": [{
+                "name": "companyId",
+                "in": "path",
+                "description": "company identiier"
+            }],
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "successfully updated"
+                    
+                }
+            }
+
+        },
+
+        "put": {
+            "tags": [
+                "Company"
+            ],
+            "description": "update company ",
+            "parameters": [{
+                "name": "companyId",
+                "in": "path",
+                "description": "role identiier"
+            
+            },{
+                "name": "companyId",
+                "in": "body",
+                "description": "update company in system",
+                "schema": {
+                    "$ref": "#/definitions/company"
+                }
+            }],
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "successfully updated"
+                }
+            }
+        },
+        "delete": {
+            "tags": [
+                "Company"
+            ],
+            "description": "delete a company",
+            "parameters": [{
+                "name": "companyId",
+                "in": "path",
+                "description": "company deleted"
+            
+            }],
+            "security": [
+                {"x-access-token": []}
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "successfully deleted"
+                }
+            }
+        }
+
+
+     
+     
+
+     
+    
+
+     }
+    
+    },
+    "definitions":{
+        "Animal":{
+            "properties":{
+               
+                "API":{
+                    "type": "string"
+                },
+                "Description":{
+                    "type": "string"
+                },
+                "Auth":{
+                    "type":"string"
+                } ,
+                "HTTPS":{
+                    "type": "string"
+                }, 
+                "Cors":{
+                    "type":"string"
+                } ,
+                "Link" : {
+                    "type" : "string"
+                },
+                "Category" : {
+                    "type" : "string"
+                }
+            }
+        },
+
+        "auth" :{
+            "properties":{
+               
+                "username":{
+                    "type": "string"
+                },
+                "password":{
+                    "type": "string"
+                }
+            }      
+    },
+         "roles": {
+            "properties" : {
+
+            "title" : {
+                "type" : "string"
+            },
+
+            "description" : {
+                "type" : "string"
+            }
+         }
+    },
+    "company":{
+        "properties":{
+            
+            "name" :{
+                "type":"string"
+            },
+            "phone":{
+                "type":"string"
+            },
+            "email":{
+                "type":"string"
+            },
+            "address":{
+                "type":"string"
+            }
+        }
+    },
+    "jobPosition":{
+        "properties":{
+            "title": {
+                "type":"string"
+
+            },
+            "description": {
+                "type":"string"
+            },
+            "active":{
+                "type":"boolean"
+            },
+            "companyId":{
+                "type": "integer"
+            }
+        }
+    },
+    "job": {
+        "properties" : {
+           
+            "userId" : {
+                "type" : "integer"
+            },
+            "jobPositionId" : {
+                "type" : "integer"
+            }
+        }
+    }
+
+}
+}
+
+
+        
+
+
+    
+
+
+
